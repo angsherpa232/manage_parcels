@@ -17,7 +17,7 @@ const App = () => (
     </div>
     <div>
       <h2>API posts</h2>
-      <Posts />
+      {/* <Posts /> */}
     </div>
   </div>
 );

@@ -1,10 +1,10 @@
-import { ADD_ARTICLE } from "../constants/action-types";
+import { ADD_ARTICLE, SET_ASSIGNEE } from "../constants/action-types";
 
 const initialState = {
   articles: [
     {
       id: 1,
-      assignee: "ang",
+      assignee: "ang gurung",
       origin: "kathmandu",
       destination: "berlin",
       status: "waiting"
@@ -63,17 +63,18 @@ const initialState = {
       assignee: "none",
       origin: "chitwan",
       destination: "america",
-      status: "waiting"
+      status: "unassigned"
     },
     {
       id: 10,
       assignee: "none",
       origin: "lukla",
       destination: "france",
-      status: "waiting"
+      status: "unassigned"
     }
   ],
-  remoteArticles: []
+  remoteArticles: [],
+  assignee: "none"
 };
 
 function rootReducer(state = initialState, action) {
@@ -86,6 +87,12 @@ function rootReducer(state = initialState, action) {
   if (action.type === "DATA_LOADED") {
     return Object.assign({}, state, {
       remoteArticles: state.remoteArticles.concat(action.payload)
+    });
+  }
+
+  if (action.type === SET_ASSIGNEE) {
+    return Object.assign({}, state, {
+      assignee: action.payload
     });
   }
 

@@ -19,6 +19,7 @@
   border-radius: 10px;
   line-height: 1rem;
   cursor: pointer;
+  padding: 0 5px;
 }
 
 .btn:focus {

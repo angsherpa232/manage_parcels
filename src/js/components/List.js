@@ -1,19 +1,29 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setAssignee } from "../actions/index";
 import styles from "./list.module.css";
 
 const List = props => {
   const articles = useSelector(state => state.articles);
+  const assignee = useSelector(state => state.assignee);
+  const dispatch = useDispatch();
+
+  const handleChange = e => {
+    dispatch(setAssignee(e.target.value));
+  };
+
+  console.log("assignee from redux ", assignee);
 
   const getAssignee = e => (
-    <button
-      className={styles.btn}
-      onClick={e => {
-        console.log("id ", e.target.value);
-      }}
-    >
-      assign
-    </button>
+    <select className={styles.btn} onChange={handleChange}>
+      {articles
+        .filter(biker => biker.assignee !== "none")
+        .map(biker => (
+          <option key={biker.id} value={biker.assignee}>
+            {biker.assignee}
+          </option>
+        ))}
+    </select>
   );
 
   return (
@@ -23,7 +33,6 @@ const List = props => {
         return (
           <li key={id} className={`${styles.card} ${styles.listContent}`}>
             <h4>Parcel no: {id}</h4>
-
             <div className={styles.innerSection}>
               <div>
                 <p>

@@ -1,4 +1,4 @@
-import { ADD_ARTICLE } from "../constants/action-types";
+import { ADD_ARTICLE, SET_ASSIGNEE } from "../constants/action-types";
 
 export function addArticle(payload) {
   return { type: ADD_ARTICLE, payload };
@@ -13,4 +13,8 @@ export function getData() {
         dispatch({ type: "DATA_LOADED", payload: json });
       });
   };
+}
+
+export function setAssignee(payload) {
+  return { type: SET_ASSIGNEE, payload };
 }
