@@ -57,6 +57,20 @@ const initialState = {
       origin: "butwal",
       destination: "spain",
       status: "delivered"
+    },
+    {
+      id: 9,
+      assignee: "none",
+      origin: "chitwan",
+      destination: "america",
+      status: "waiting"
+    },
+    {
+      id: 10,
+      assignee: "none",
+      origin: "lukla",
+      destination: "france",
+      status: "waiting"
     }
   ],
   remoteArticles: []

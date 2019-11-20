@@ -4,6 +4,7 @@ export function addArticle(payload) {
   return { type: ADD_ARTICLE, payload };
 }
 
+// thunks allows to return function instead of plain JS object from action creator
 export function getData() {
   return function(dispatch) {
     return fetch("https://jsonplaceholder.typicode.com/posts")
