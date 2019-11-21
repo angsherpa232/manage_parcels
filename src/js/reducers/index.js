@@ -96,6 +96,19 @@ function rootReducer(state = initialState, action) {
     });
   }
 
+  if (action.type === "GET_PARCEL_DETAIL") {
+    const unAssignedPackage = state.articles.find(e => e.id === action.payload);
+    console.log("bikers redux ", unAssignedPackage);
+    unAssignedPackage.status = "assigned";
+    unAssignedPackage.assignee = state.assignee;
+    const index = state.articles.findIndex(e => e.id === action.payload);
+    const bikeCopy = [...state.articles];
+    bikeCopy[index] = unAssignedPackage;
+    return Object.assign({}, state, {
+      articles: bikeCopy
+    });
+  }
+
   return state;
 }
 

@@ -18,3 +18,7 @@ export function getData() {
 export function setAssignee(payload) {
   return { type: SET_ASSIGNEE, payload };
 }
+
+export function getParcelDetail(payload) {
+  return { type: "GET_PARCEL_DETAIL", payload };
+}

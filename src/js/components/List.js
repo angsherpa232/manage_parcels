@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setAssignee } from "../actions/index";
+import { setAssignee, getParcelDetail } from "../actions/index";
 import styles from "./list.module.css";
 
 const List = props => {
@@ -9,6 +9,7 @@ const List = props => {
 
   const handleChange = (id, e) => {
     dispatch(setAssignee(e.target.value));
+    dispatch(getParcelDetail(id));
   };
 
   const getAssignee = id => {
