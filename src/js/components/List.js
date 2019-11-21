@@ -5,26 +5,28 @@ import styles from "./list.module.css";
 
 const List = props => {
   const articles = useSelector(state => state.articles);
-  const assignee = useSelector(state => state.assignee);
   const dispatch = useDispatch();
 
-  const handleChange = e => {
+  const handleChange = (id, e) => {
     dispatch(setAssignee(e.target.value));
   };
 
-  console.log("assignee from redux ", assignee);
-
-  const getAssignee = e => (
-    <select className={styles.btn} onChange={handleChange}>
-      {articles
-        .filter(biker => biker.assignee !== "none")
-        .map(biker => (
-          <option key={biker.id} value={biker.assignee}>
-            {biker.assignee}
-          </option>
-        ))}
-    </select>
-  );
+  const getAssignee = id => {
+    return (
+      <select
+        className={styles.btn}
+        onChange={(e => handleChange.bind(this, id))()}
+      >
+        {articles
+          .filter(biker => biker.assignee !== "none")
+          .map(biker => (
+            <option key={biker.id} value={biker.assignee}>
+              {biker.assignee}
+            </option>
+          ))}
+      </select>
+    );
+  };
 
   return (
     <ul>
@@ -39,7 +41,7 @@ const List = props => {
                   Assignee:{" "}
                   <span>
                     {assignee === "none"
-                      ? getAssignee()
+                      ? getAssignee(id)
                       : assignee.toUpperCase()}
                   </span>
                 </p>
