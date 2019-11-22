@@ -6,7 +6,7 @@ const initialState = {
   assignee: "none",
   bikers: [],
   isAuth: false,
-  pickupDate: "",
+  pickupTime: "",
   DeliveryDate: ""
 };
 
@@ -48,6 +48,18 @@ function rootReducer(state = initialState, action) {
     });
   }
 
+  if (action.type === "UPDATE_PICKUP_TIME") {
+    const unAssignedPackage = state.articles.find(e => e.id === action.payload);
+    unAssignedPackage.pickupTime = state.pickupTime;
+    const index = state.articles.findIndex(e => e.id === action.payload);
+    const bikeCopy = [...state.articles];
+    bikeCopy[index] = unAssignedPackage;
+    localStorage.setItem("user", JSON.stringify(bikeCopy));
+    return Object.assign({}, state, {
+      articles: bikeCopy
+    });
+  }
+
   // this might be deletable in the future
   if (action.type === "GET_BIKERS") {
     const bike = state.articles
@@ -68,7 +80,7 @@ function rootReducer(state = initialState, action) {
 
   if (action.type === "SET_PICKUP_TIME") {
     return Object.assign({}, state, {
-      pickupDate: action.payload
+      pickupTime: action.payload
     });
   }
 

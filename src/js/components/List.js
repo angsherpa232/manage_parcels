@@ -1,19 +1,14 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
 import styles from "./list.module.css";
-
-import { setPickupDate } from "../actions/index";
+import { isTSBigIntKeyword } from "@babel/types";
 
 const List = props => {
-  const { bikers, getAssignee } = props;
+  const { bikers, getAssignee, getTime } = props;
 
-  const dispatch = useDispatch();
-
-  const timeChange = e => {
-    const dateTime = e.target.value;
-    dispatch(setPickupDate(dateTime));
-    console.log(dateTime);
-  };
+  // temporary method to check if it is user or manger, later replace with auth function
+  const isBiker = () => (window.location.pathname === "/bikers" ? false : true);
+  const isManager = () =>
+    window.location.pathname === "/manager" ? false : true;
 
   return (
     <ul>
@@ -48,11 +43,20 @@ const List = props => {
             <div className={styles.innerSection}>
               <p>
                 Pickup time:{" "}
-                <input type="datetime-local" onChange={timeChange}></input>
+                <input
+                  readOnly={isBiker()}
+                  type="datetime-local"
+                  //isManager() was required bcoz otherwise bind will run for manager also
+                  onChange={isManager() && (e => getTime.bind(this, id))()}
+                ></input>
               </p>
               <p>
                 Delivery time:{" "}
-                <input type="datetime-local" onChange={timeChange}></input>
+                <input
+                  readOnly={isBiker()}
+                  type="datetime-local"
+                  onChange={getTime}
+                ></input>
               </p>
             </div>
           </li>

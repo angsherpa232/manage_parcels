@@ -9,11 +9,15 @@ const Manager = props => {
   const articles = useSelector(state => state.articles);
   const dispatch = useDispatch();
 
+  // Update the state
   const handleChange = (id, e) => {
+    // Set the new assignee name in state
     dispatch(setAssignee(e.target.value));
+    // Update the state with new assignee new for the chosen id
     dispatch(getParcelDetail(id));
   };
 
+  // Get the chosen assignee from bikers list
   const getAssignee = id => {
     return (
       <select

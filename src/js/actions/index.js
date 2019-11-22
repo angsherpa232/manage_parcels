@@ -38,7 +38,11 @@ export function login(payload) {
   return { type: "LOGIN", payload };
 }
 
-export function setPickupDate(payload) {
+export function setPickupTime(payload) {
   console.log("pick up", payload);
   return { type: "SET_PICKUP_TIME", payload };
+}
+
+export function updatePickupTime(payload) {
+  return { type: "UPDATE_PICKUP_TIME", payload };
 }

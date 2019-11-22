@@ -20,7 +20,8 @@ const App = () => {
       assignee: "ang gurung",
       origin: "kathmandu",
       destination: "berlin",
-      status: "waiting"
+      status: "waiting",
+      pickupDate: ""
     },
     {
       id: 2,
