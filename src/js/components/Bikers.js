@@ -1,11 +1,14 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import List from "../components/List";
 
 const Bikers = props => {
-  const articles = useSelector(state => state.articles);
+  let bikers = useSelector(state => state.articles);
+  bikers = localStorage["user"]
+    ? JSON.parse(localStorage.getItem("user"))
+    : bikers;
 
-  const specificBiker = articles.filter(biker => {
+  const specificBiker = bikers.filter(biker => {
     const { assignee } = biker;
     return assignee === "kushal";
   });

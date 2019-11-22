@@ -1,107 +1,23 @@
 import { ADD_ARTICLE, SET_ASSIGNEE } from "../constants/action-types";
 
 const initialState = {
-  articles: [
-    {
-      id: 1,
-      assignee: "ang gurung",
-      origin: "kathmandu",
-      destination: "berlin",
-      status: "waiting"
-    },
-    {
-      id: 2,
-      assignee: "ang gurung",
-      origin: "pokhara",
-      destination: "munster",
-      status: "waiting"
-    },
-    {
-      id: 3,
-      assignee: "sherpa",
-      origin: "bhaktapur",
-      destination: "freiburg",
-      status: "assigned"
-    },
-    {
-      id: 4,
-      assignee: "ram",
-      origin: "khumbu",
-      destination: "frankfurt",
-      status: "assinged"
-    },
-    {
-      id: 5,
-      assignee: "sam",
-      origin: "janakpur",
-      destination: "munich",
-      status: "pickedUp"
-    },
-    {
-      id: 11,
-      assignee: "none",
-      origin: "chitwan",
-      destination: "america",
-      status: "unassigned"
-    },
-    {
-      id: 6,
-      assignee: "john",
-      origin: "phakding",
-      destination: "hamburg",
-      status: "pickedUp"
-    },
-    {
-      id: 7,
-      assignee: "john",
-      origin: "namche",
-      destination: "zurich",
-      status: "delivered"
-    },
-    {
-      id: 8,
-      assignee: "ronay",
-      origin: "butwal",
-      destination: "spain",
-      status: "delivered"
-    },
-    {
-      id: 9,
-      assignee: "none",
-      origin: "chitwan",
-      destination: "america",
-      status: "unassigned"
-    },
-    {
-      id: 10,
-      assignee: "kushal",
-      origin: "lukla",
-      destination: "france",
-      status: "unassigned"
-    },
-    {
-      id: 12,
-      assignee: "kushal",
-      origin: "chitwan",
-      destination: "america",
-      status: "delivered"
-    },
-    {
-      id: 13,
-      assignee: "sanjeev",
-      origin: "chitwan",
-      destination: "america",
-      status: "pickedUp"
-    }
-  ],
+  articles: [],
   remoteArticles: [],
   assignee: "none",
   bikers: [],
-  isAuth: false
+  isAuth: false,
+  pickupDate: "",
+  DeliveryDate: ""
 };
 
 function rootReducer(state = initialState, action) {
   if (action.type === ADD_ARTICLE) {
+    return Object.assign({}, state, {
+      articles: state.articles.concat(action.payload)
+    });
+  }
+
+  if (action.type === "SET_ARTICLES") {
     return Object.assign({}, state, {
       articles: state.articles.concat(action.payload)
     });
@@ -126,6 +42,7 @@ function rootReducer(state = initialState, action) {
     const index = state.articles.findIndex(e => e.id === action.payload);
     const bikeCopy = [...state.articles];
     bikeCopy[index] = unAssignedPackage;
+    localStorage.setItem("user", JSON.stringify(bikeCopy));
     return Object.assign({}, state, {
       articles: bikeCopy
     });
@@ -148,7 +65,13 @@ function rootReducer(state = initialState, action) {
       isAuth: true
     });
   }
-  console.log("stt ", state);
+
+  if (action.type === "SET_PICKUP_TIME") {
+    return Object.assign({}, state, {
+      pickupDate: action.payload
+    });
+  }
+
   return state;
 }
 
