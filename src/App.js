@@ -20,7 +20,8 @@ const App = () => {
       origin: "kathmandu",
       destination: "berlin",
       status: "waiting",
-      pickupTime: ""
+      pickupTime: "",
+      deliveryTime: ""
     },
     {
       id: 2,
@@ -28,7 +29,8 @@ const App = () => {
       origin: "pokhara",
       destination: "munster",
       status: "waiting",
-      pickupTime: ""
+      pickupTime: "",
+      deliveryTime: ""
     },
     {
       id: 3,
@@ -36,7 +38,8 @@ const App = () => {
       origin: "bhaktapur",
       destination: "freiburg",
       status: "assigned",
-      pickupTime: ""
+      pickupTime: "",
+      deliveryTime: ""
     },
     {
       id: 4,
@@ -44,7 +47,8 @@ const App = () => {
       origin: "khumbu",
       destination: "frankfurt",
       status: "assinged",
-      pickupTime: ""
+      pickupTime: "",
+      deliveryTime: ""
     },
     {
       id: 5,
@@ -52,7 +56,8 @@ const App = () => {
       origin: "janakpur",
       destination: "munich",
       status: "pickedUp",
-      pickupTime: ""
+      pickupTime: "",
+      deliveryTime: ""
     },
     {
       id: 11,
@@ -60,7 +65,8 @@ const App = () => {
       origin: "chitwan",
       destination: "america",
       status: "unassigned",
-      pickupTime: ""
+      pickupTime: "",
+      deliveryTime: ""
     },
     {
       id: 6,
@@ -68,7 +74,8 @@ const App = () => {
       origin: "phakding",
       destination: "hamburg",
       status: "pickedUp",
-      pickupTime: ""
+      pickupTime: "",
+      deliveryTime: ""
     },
     {
       id: 7,
@@ -76,7 +83,8 @@ const App = () => {
       origin: "namche",
       destination: "zurich",
       status: "delivered",
-      pickupTime: ""
+      pickupTime: "",
+      deliveryTime: ""
     },
     {
       id: 8,
@@ -84,7 +92,8 @@ const App = () => {
       origin: "butwal",
       destination: "spain",
       status: "delivered",
-      pickupTime: ""
+      pickupTime: "",
+      deliveryTime: ""
     },
     {
       id: 9,
@@ -92,7 +101,8 @@ const App = () => {
       origin: "chitwan",
       destination: "america",
       status: "unassigned",
-      pickupTime: ""
+      pickupTime: "",
+      deliveryTime: ""
     },
     {
       id: 10,
@@ -100,7 +110,8 @@ const App = () => {
       origin: "lukla",
       destination: "france",
       status: "unassigned",
-      pickupTime: "2019-11-21T11:22"
+      pickupTime: "",
+      deliveryTime: ""
     },
     {
       id: 12,
@@ -108,7 +119,8 @@ const App = () => {
       origin: "chitwan",
       destination: "america",
       status: "delivered",
-      pickupTime: ""
+      pickupTime: "",
+      deliveryTime: ""
     },
     {
       id: 13,
@@ -116,7 +128,8 @@ const App = () => {
       origin: "chitwan",
       destination: "america",
       status: "pickedUp",
-      pickupTime: ""
+      pickupTime: "",
+      deliveryTime: ""
     }
   ];
 

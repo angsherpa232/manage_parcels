@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./list.module.css";
 
 const List = props => {
-  const { bikers, getAssignee, getTime } = props;
+  const { bikers, getAssignee, getPickupTime, getDeliveryTime } = props;
 
   // temporary method to check if it is user or manger, later replace with auth function
   const isBiker = () => (window.location.pathname === "/bikers" ? false : true);
@@ -12,7 +12,15 @@ const List = props => {
   return (
     <ul>
       {bikers.map(el => {
-        const { assignee, origin, destination, status, id, pickupTime } = el;
+        const {
+          assignee,
+          origin,
+          destination,
+          status,
+          id,
+          pickupTime,
+          deliveryTime
+        } = el;
         return (
           <li key={id} className={`${styles.card} ${styles.listContent}`}>
             <h4>Parcel no: {id}</h4>
@@ -47,15 +55,20 @@ const List = props => {
                   readOnly={isBiker()}
                   type="datetime-local"
                   //isManager() was required bcoz otherwise bind will run for manager also
-                  onChange={isManager() && (e => getTime.bind(this, id))()}
+                  onChange={
+                    isManager() && (e => getPickupTime.bind(this, id))()
+                  }
                 ></input>
               </p>
               <p>
                 Delivery time:{" "}
                 <input
+                  value={deliveryTime}
                   readOnly={isBiker()}
                   type="datetime-local"
-                  onChange={getTime}
+                  onChange={
+                    isManager() && (e => getDeliveryTime.bind(this, id))()
+                  }
                 ></input>
               </p>
             </div>
