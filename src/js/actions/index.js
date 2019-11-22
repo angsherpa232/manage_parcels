@@ -29,17 +29,14 @@ export function getParcelDetail(payload) {
 
 // this might be deletable in the future :D
 export function getBikers(payload) {
-  console.log("from get bikers");
   return { type: "GET_BIKERS", payload };
 }
 
 export function login(payload) {
-  console.log(payload);
   return { type: "LOGIN", payload };
 }
 
 export function setPickupTime(payload) {
-  console.log("pick up", payload);
   return { type: "SET_PICKUP_TIME", payload };
 }
 

@@ -66,7 +66,6 @@ function rootReducer(state = initialState, action) {
       .filter(biker => biker.assignee !== "none")
       .map(biker => biker.assignee);
     const uniqueBikers = Array.from(new Set(bike));
-    console.log("unique ", Array.isArray(uniqueBikers), uniqueBikers);
     return Object.assign({}, state, {
       bikers: state.bikers.concat(uniqueBikers)
     });

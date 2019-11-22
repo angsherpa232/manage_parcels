@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./list.module.css";
-import { isTSBigIntKeyword } from "@babel/types";
 
 const List = props => {
   const { bikers, getAssignee, getTime } = props;
@@ -13,7 +12,7 @@ const List = props => {
   return (
     <ul>
       {bikers.map(el => {
-        const { assignee, origin, destination, status, id } = el;
+        const { assignee, origin, destination, status, id, pickupTime } = el;
         return (
           <li key={id} className={`${styles.card} ${styles.listContent}`}>
             <h4>Parcel no: {id}</h4>
@@ -44,6 +43,7 @@ const List = props => {
               <p>
                 Pickup time:{" "}
                 <input
+                  value={pickupTime}
                   readOnly={isBiker()}
                   type="datetime-local"
                   //isManager() was required bcoz otherwise bind will run for manager also

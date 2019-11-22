@@ -11,7 +11,6 @@ import { setArticles } from "./js/actions/index";
 
 const App = () => {
   const isAuth = useSelector(state => state.isAuth);
-  const articles = useSelector(state => state.articles);
   const dispatch = useDispatch();
 
   const arti = [
@@ -21,96 +20,112 @@ const App = () => {
       origin: "kathmandu",
       destination: "berlin",
       status: "waiting",
-      pickupDate: ""
+      pickupTime: ""
     },
     {
       id: 2,
       assignee: "ang gurung",
       origin: "pokhara",
       destination: "munster",
-      status: "waiting"
+      status: "waiting",
+      pickupTime: ""
     },
     {
       id: 3,
       assignee: "sherpa",
       origin: "bhaktapur",
       destination: "freiburg",
-      status: "assigned"
+      status: "assigned",
+      pickupTime: ""
     },
     {
       id: 4,
       assignee: "ram",
       origin: "khumbu",
       destination: "frankfurt",
-      status: "assinged"
+      status: "assinged",
+      pickupTime: ""
     },
     {
       id: 5,
       assignee: "sam",
       origin: "janakpur",
       destination: "munich",
-      status: "pickedUp"
+      status: "pickedUp",
+      pickupTime: ""
     },
     {
       id: 11,
       assignee: "none",
       origin: "chitwan",
       destination: "america",
-      status: "unassigned"
+      status: "unassigned",
+      pickupTime: ""
     },
     {
       id: 6,
       assignee: "john",
       origin: "phakding",
       destination: "hamburg",
-      status: "pickedUp"
+      status: "pickedUp",
+      pickupTime: ""
     },
     {
       id: 7,
       assignee: "john",
       origin: "namche",
       destination: "zurich",
-      status: "delivered"
+      status: "delivered",
+      pickupTime: ""
     },
     {
       id: 8,
       assignee: "ronay",
       origin: "butwal",
       destination: "spain",
-      status: "delivered"
+      status: "delivered",
+      pickupTime: ""
     },
     {
       id: 9,
       assignee: "none",
       origin: "chitwan",
       destination: "america",
-      status: "unassigned"
+      status: "unassigned",
+      pickupTime: ""
     },
     {
       id: 10,
       assignee: "kushal",
       origin: "lukla",
       destination: "france",
-      status: "unassigned"
+      status: "unassigned",
+      pickupTime: "2019-11-21T11:22"
     },
     {
       id: 12,
-      assignee: "kushal",
+      assignee: "sanjeev",
       origin: "chitwan",
       destination: "america",
-      status: "delivered"
+      status: "delivered",
+      pickupTime: ""
     },
     {
       id: 13,
       assignee: "sanjeev",
       origin: "chitwan",
       destination: "america",
-      status: "pickedUp"
+      status: "pickedUp",
+      pickupTime: ""
     }
   ];
 
   useEffect(() => {
-    dispatch(setArticles(arti));
+    if (localStorage["user"]) {
+      dispatch(setArticles(JSON.parse(localStorage.getItem("user"))));
+    } else {
+      dispatch(setArticles(arti));
+    }
   }, []);
 
   let content = <Auth />;
