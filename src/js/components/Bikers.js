@@ -1,7 +1,12 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import List from "../components/List";
-import { setPickupTime, updatePickupTime } from "../actions/index";
+import {
+  setPickupTime,
+  updatePickupTime,
+  setDeliveryTime,
+  updateDeliveryTime
+} from "../actions/index";
 
 const Bikers = props => {
   const dispatch = useDispatch();
@@ -13,10 +18,16 @@ const Bikers = props => {
     ? JSON.parse(localStorage.getItem("user"))
     : bikers;
 
-  const getTime = (id, e) => {
+  const getPickupTime = (id, e) => {
     const dateTime = e.target.value;
     dispatch(setPickupTime(dateTime));
     dispatch(updatePickupTime(id));
+  };
+
+  const getDeliveryTime = (id, e) => {
+    const dateTime = e.target.value;
+    dispatch(setDeliveryTime(dateTime));
+    dispatch(updateDeliveryTime(id));
   };
 
   const specificBiker = bikers.filter(biker => {
@@ -25,7 +36,12 @@ const Bikers = props => {
   });
 
   return (
-    <List bikers={specificBiker} getTime={getTime} pickupTime={pickupTime} />
+    <List
+      bikers={specificBiker}
+      getPickupTime={getPickupTime}
+      pickupTime={pickupTime}
+      getDeliveryTime={getDeliveryTime}
+    />
   );
 };
 

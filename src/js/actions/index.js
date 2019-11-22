@@ -40,6 +40,14 @@ export function setPickupTime(payload) {
   return { type: "SET_PICKUP_TIME", payload };
 }
 
+export function setDeliveryTime(payload) {
+  return { type: "SET_DELIVERY_TIME", payload };
+}
+
 export function updatePickupTime(payload) {
   return { type: "UPDATE_PICKUP_TIME", payload };
+}
+
+export function updateDeliveryTime(payload) {
+  return { type: "UPDATE_DELIVERY_TIME", payload };
 }
