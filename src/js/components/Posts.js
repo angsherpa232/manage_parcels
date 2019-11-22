@@ -7,7 +7,7 @@ const Post = props => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getData());
-  });
+  }, []);
 
   return (
     <ul>

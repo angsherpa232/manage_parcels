@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useSelector } from "react-redux";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Bikers from "../src/js/components/Bikers";
+import Manager from "../src/js/components/Manager";
+import Auth from "../src/js/components/Auth";
+
+import "./App.css";
+
+const App = () => {
+  const isAuth = useSelector(state => state.isAuth);
+
+  let content = <Auth />;
+
+  if (isAuth) {
+    content = (
+      <Router>
+        <div>
+          <h2>Articles</h2>
+          <Route path="/login" component={Auth}></Route>
+          <Route path="/bikers" component={Bikers}></Route>
+          <Route path="/manager" component={Manager}></Route>
+        </div>
+      </Router>
+    );
+  }
+
+  return content;
+};
 
 export default App;
