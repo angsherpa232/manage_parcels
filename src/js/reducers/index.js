@@ -11,7 +11,7 @@ const initialState = {
     },
     {
       id: 2,
-      assignee: "dawa",
+      assignee: "ang gurung",
       origin: "pokhara",
       destination: "munster",
       status: "waiting"
@@ -38,6 +38,13 @@ const initialState = {
       status: "pickedUp"
     },
     {
+      id: 11,
+      assignee: "none",
+      origin: "chitwan",
+      destination: "america",
+      status: "unassigned"
+    },
+    {
       id: 6,
       assignee: "john",
       origin: "phakding",
@@ -46,7 +53,7 @@ const initialState = {
     },
     {
       id: 7,
-      assignee: "joy",
+      assignee: "john",
       origin: "namche",
       destination: "zurich",
       status: "delivered"
@@ -67,14 +74,30 @@ const initialState = {
     },
     {
       id: 10,
-      assignee: "none",
+      assignee: "kushal",
       origin: "lukla",
       destination: "france",
       status: "unassigned"
+    },
+    {
+      id: 12,
+      assignee: "kushal",
+      origin: "chitwan",
+      destination: "america",
+      status: "delivered"
+    },
+    {
+      id: 13,
+      assignee: "sanjeev",
+      origin: "chitwan",
+      destination: "america",
+      status: "pickedUp"
     }
   ],
   remoteArticles: [],
-  assignee: "none"
+  assignee: "none",
+  bikers: [],
+  isAuth: false
 };
 
 function rootReducer(state = initialState, action) {
@@ -98,7 +121,6 @@ function rootReducer(state = initialState, action) {
 
   if (action.type === "GET_PARCEL_DETAIL") {
     const unAssignedPackage = state.articles.find(e => e.id === action.payload);
-    console.log("bikers redux ", unAssignedPackage);
     unAssignedPackage.status = "assigned";
     unAssignedPackage.assignee = state.assignee;
     const index = state.articles.findIndex(e => e.id === action.payload);
@@ -109,6 +131,24 @@ function rootReducer(state = initialState, action) {
     });
   }
 
+  // this might be deletable in the future
+  if (action.type === "GET_BIKERS") {
+    const bike = state.articles
+      .filter(biker => biker.assignee !== "none")
+      .map(biker => biker.assignee);
+    const uniqueBikers = Array.from(new Set(bike));
+    console.log("unique ", Array.isArray(uniqueBikers), uniqueBikers);
+    return Object.assign({}, state, {
+      bikers: state.bikers.concat(uniqueBikers)
+    });
+  }
+
+  if (action.type === "LOGIN") {
+    return Object.assign({}, state, {
+      isAuth: true
+    });
+  }
+  console.log("stt ", state);
   return state;
 }
 

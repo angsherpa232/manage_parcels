@@ -22,3 +22,14 @@ export function setAssignee(payload) {
 export function getParcelDetail(payload) {
   return { type: "GET_PARCEL_DETAIL", payload };
 }
+
+// this might be deletable in the future :D
+export function getBikers(payload) {
+  console.log("from get bikers");
+  return { type: "GET_BIKERS", payload };
+}
+
+export function login(payload) {
+  console.log(payload);
+  return { type: "LOGIN", payload };
+}

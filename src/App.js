@@ -1,25 +1,32 @@
 import React from "react";
-import List from "../src/js/components/List";
-import Form from "../src/js/components/Form";
-import Posts from "../src/js/components/Posts";
+import { useSelector } from "react-redux";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
+import Bikers from "../src/js/components/Bikers";
+import Manager from "../src/js/components/Manager";
+import Auth from "../src/js/components/Auth";
 
 import "./App.css";
 
-const App = () => (
-  <div>
-    <div>
-      <h2>Articles</h2>
-      <List />
-    </div>
-    <div>
-      <h2>Add a new article</h2>
-      <Form />
-    </div>
-    <div>
-      <h2>API posts</h2>
-      {/* <Posts /> */}
-    </div>
-  </div>
-);
+const App = () => {
+  const isAuth = useSelector(state => state.isAuth);
+
+  let content = <Auth />;
+
+  if (isAuth) {
+    content = (
+      <Router>
+        <div>
+          <h2>Articles</h2>
+          <Route path="/login" component={Auth}></Route>
+          <Route path="/bikers" component={Bikers}></Route>
+          <Route path="/manager" component={Manager}></Route>
+        </div>
+      </Router>
+    );
+  }
+
+  return content;
+};
 
 export default App;

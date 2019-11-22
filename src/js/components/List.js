@@ -1,37 +1,12 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { setAssignee, getParcelDetail } from "../actions/index";
 import styles from "./list.module.css";
 
 const List = props => {
-  const articles = useSelector(state => state.articles);
-  const dispatch = useDispatch();
-
-  const handleChange = (id, e) => {
-    dispatch(setAssignee(e.target.value));
-    dispatch(getParcelDetail(id));
-  };
-
-  const getAssignee = id => {
-    return (
-      <select
-        className={styles.btn}
-        onChange={(e => handleChange.bind(this, id))()}
-      >
-        {articles
-          .filter(biker => biker.assignee !== "none")
-          .map(biker => (
-            <option key={biker.id} value={biker.assignee}>
-              {biker.assignee}
-            </option>
-          ))}
-      </select>
-    );
-  };
+  const { bikers, getAssignee } = props;
 
   return (
     <ul>
-      {articles.map(el => {
+      {bikers.map(el => {
         const { assignee, origin, destination, status, id } = el;
         return (
           <li key={id} className={`${styles.card} ${styles.listContent}`}>
