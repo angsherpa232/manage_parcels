@@ -4,6 +4,10 @@ export function addArticle(payload) {
   return { type: ADD_ARTICLE, payload };
 }
 
+export function setArticles(payload) {
+  return { type: "SET_ARTICLES", payload };
+}
+
 // thunks allows to return function instead of plain JS object from action creator
 export function getData() {
   return function(dispatch) {
@@ -25,11 +29,17 @@ export function getParcelDetail(payload) {
 
 // this might be deletable in the future :D
 export function getBikers(payload) {
-  console.log("from get bikers");
   return { type: "GET_BIKERS", payload };
 }
 
 export function login(payload) {
-  console.log(payload);
   return { type: "LOGIN", payload };
+}
+
+export function setPickupTime(payload) {
+  return { type: "SET_PICKUP_TIME", payload };
+}
+
+export function updatePickupTime(payload) {
+  return { type: "UPDATE_PICKUP_TIME", payload };
 }
