@@ -7,7 +7,8 @@ const initialState = {
   bikers: [],
   isAuth: false,
   pickupTime: "",
-  deliveryDate: ""
+  deliveryDate: "",
+  screenRedux: "auth"
 };
 
 function rootReducer(state = initialState, action) {
@@ -99,6 +100,11 @@ function rootReducer(state = initialState, action) {
     return Object.assign({}, state, {
       articles: bikeCopy
     });
+  }
+
+  // Authentication
+  if (action.type === "SET_ROLE") {
+    console.log("authenticate ", action.payload);
   }
 
   return state;

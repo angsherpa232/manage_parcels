@@ -9,6 +9,8 @@ const Manager = props => {
   let bikers = useSelector(state => state.articles);
   const dispatch = useDispatch();
 
+  const { screen } = props;
+
   // Update the state
   const handleChange = (id, e) => {
     // Set the new assignee name in state
@@ -40,7 +42,7 @@ const Manager = props => {
     );
   };
 
-  return <List bikers={bikers} getAssignee={getAssignee} />;
+  return <List bikers={bikers} getAssignee={getAssignee} screen={screen} />;
 };
 
 export default Manager;

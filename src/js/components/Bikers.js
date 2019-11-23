@@ -14,6 +14,8 @@ const Bikers = props => {
   let bikers = useSelector(state => state.articles);
   let pickupTime = useSelector(state => state.pickupTime);
 
+  const { screen } = props;
+
   bikers = localStorage["user"]
     ? JSON.parse(localStorage.getItem("user"))
     : bikers;
@@ -41,6 +43,7 @@ const Bikers = props => {
       getPickupTime={getPickupTime}
       pickupTime={pickupTime}
       getDeliveryTime={getDeliveryTime}
+      screenBiker={screen}
     />
   );
 };
