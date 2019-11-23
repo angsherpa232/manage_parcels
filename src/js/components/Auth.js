@@ -4,8 +4,9 @@ import axios from "axios";
 
 import Manager from "./Manager";
 import Bikers from "./Bikers";
-import { setRole } from "../actions/index";
+import { setRole, setError } from "../actions/index";
 import Login from "../components/Login";
+import ErrorModal from "../components/UI/ErrorModal";
 
 function View(props) {
   const { screen, setScreen } = props;
@@ -61,6 +62,7 @@ function Auth() {
   const [password, setPassword] = useState();
 
   const dispatch = useDispatch();
+  const error = useSelector(state => state.error);
 
   const auth = async () => {
     try {
@@ -69,12 +71,11 @@ function Auth() {
       });
 
       if (res.data.screen !== undefined) {
-        console.log("from if ", res.data.screen);
         dispatch(setRole(res.data.screen));
         setScreen(res.data.screen);
       }
     } catch (error) {
-      console.log(error);
+      dispatch(setError(error.message));
     }
   };
 
@@ -88,10 +89,12 @@ function Auth() {
       }
     } catch (error) {
       setScreen("auth");
+      dispatch(setError(error.message));
       dispatch(setRole("auth"));
-      console.log(error);
     }
   };
+
+  const clearError = () => dispatch(setError(null));
 
   useEffect(() => {
     readCookie();
@@ -99,14 +102,17 @@ function Auth() {
 
   return (
     <>
-      {screen === "auth" ? (
+      {screen === "auth" && !error ? (
         <Login
           setUsername={setUsername}
           setPassword={setPassword}
           auth={auth}
         />
       ) : (
-        <View screen={screen} setScreen={setScreen} />
+        <>
+          {error && <ErrorModal onClose={clearError}>{error}</ErrorModal>}
+          <View screen={screen} setScreen={setScreen} />
+        </>
       )}
     </>
   );

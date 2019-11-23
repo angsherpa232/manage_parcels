@@ -56,3 +56,8 @@ export function updateDeliveryTime(payload) {
 export function setRole(payload) {
   return { type: "SET_ROLE", payload };
 }
+
+export function setError(payload) {
+  console.log("action error ", payload);
+  return { type: "ERROR", payload };
+}

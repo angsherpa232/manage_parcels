@@ -8,7 +8,8 @@ const initialState = {
   isAuth: false,
   pickupTime: "",
   deliveryDate: "",
-  screenRedux: "auth"
+  screenRedux: "auth",
+  error: null
 };
 
 function rootReducer(state = initialState, action) {
@@ -109,6 +110,11 @@ function rootReducer(state = initialState, action) {
     });
   }
 
+  if (action.type === "ERROR") {
+    return Object.assign({}, state, {
+      error: action.payload
+    });
+  }
   return state;
 }
 
