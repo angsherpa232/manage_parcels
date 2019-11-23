@@ -11,10 +11,12 @@ import {
 const Bikers = props => {
   const dispatch = useDispatch();
   // Either takes the initial articles state or assignee updated by manager
-  let bikers = useSelector(state => state.articles);
-  let pickupTime = useSelector(state => state.pickupTime);
 
-  const { screen } = props;
+  let { bikers, pickupTime, screenRedux } = useSelector(state => ({
+    bikers: state.articles,
+    pickupTime: state.pickupTime,
+    screenRedux: state.screenRedux
+  }));
 
   bikers = localStorage["user"]
     ? JSON.parse(localStorage.getItem("user"))
@@ -43,7 +45,7 @@ const Bikers = props => {
       getPickupTime={getPickupTime}
       pickupTime={pickupTime}
       getDeliveryTime={getDeliveryTime}
-      screenBiker={screen}
+      screen={screenRedux}
     />
   );
 };

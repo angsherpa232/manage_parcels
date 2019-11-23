@@ -6,10 +6,12 @@ import List from "../components/List";
 import styles from "./list.module.css";
 
 const Manager = props => {
-  let bikers = useSelector(state => state.articles);
-  const dispatch = useDispatch();
+  let { bikers, screenRedux } = useSelector(state => ({
+    bikers: state.articles,
+    screenRedux: state.screenRedux
+  }));
 
-  const { screen } = props;
+  const dispatch = useDispatch();
 
   // Update the state
   const handleChange = (id, e) => {
@@ -42,7 +44,9 @@ const Manager = props => {
     );
   };
 
-  return <List bikers={bikers} getAssignee={getAssignee} screen={screen} />;
+  return (
+    <List bikers={bikers} getAssignee={getAssignee} screen={screenRedux} />
+  );
 };
 
 export default Manager;

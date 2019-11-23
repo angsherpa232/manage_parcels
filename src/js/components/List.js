@@ -1,12 +1,15 @@
 import React from "react";
+
 import styles from "./list.module.css";
 
 const List = props => {
   const { bikers, getAssignee, getPickupTime, getDeliveryTime, screen } = props;
 
   // temporary method to check if it is user or manger, later replace with auth function
-  const isBiker = () => (props.screenBiker === "user" ? false : true);
+  const isBiker = () => (screen === "user" ? false : true);
   const isManager = () => (screen === "admin" ? false : true);
+
+  console.log("user from list ", isBiker(), screen);
 
   return (
     <ul>

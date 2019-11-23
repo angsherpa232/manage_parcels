@@ -104,7 +104,9 @@ function rootReducer(state = initialState, action) {
 
   // Authentication
   if (action.type === "SET_ROLE") {
-    console.log("authenticate ", action.payload);
+    return Object.assign({}, state, {
+      screenRedux: action.payload
+    });
   }
 
   return state;

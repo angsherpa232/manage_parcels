@@ -4,8 +4,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Bikers from "../src/js/components/Bikers";
 import Manager from "../src/js/components/Manager";
-import Auth from "../src/js/components/Auth";
-import Test from "./test";
+import Auth from "./js/components/Auth";
 
 import "./App.css";
 import { setArticles } from "./js/actions/index";
@@ -142,10 +141,11 @@ const App = () => {
     }
   }, []);
 
-  let content = <Test />;
+  let content = <Auth />;
 
   if (isAuth) {
     content = (
+      // remove router as node controls the route
       <Router>
         <div>
           <h2>Articles</h2>
