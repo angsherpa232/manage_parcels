@@ -51,3 +51,8 @@ export function updatePickupTime(payload) {
 export function updateDeliveryTime(payload) {
   return { type: "UPDATE_DELIVERY_TIME", payload };
 }
+
+// Authentication
+export function setRole(payload) {
+  return { type: "SET_ROLE", payload };
+}
