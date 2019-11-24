@@ -10,7 +10,7 @@ const List = props => {
   const isManager = () => (screen === "manager" ? false : true);
 
   return (
-    <ul>
+    <ul className={styles.parcelList}>
       {bikers.map(el => {
         const {
           assignee,
