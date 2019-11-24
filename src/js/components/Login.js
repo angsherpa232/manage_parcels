@@ -22,8 +22,8 @@ const Login = props => {
             onChange={e => dispatch(setRole(e.target.value))}
           >
             <option value="none">Select</option>
-            <option value="admin">Manager</option>
-            <option value="user">Biker</option>
+            <option value="manager">Manager</option>
+            <option value="biker">Biker</option>
           </select>
         </div>
         <br />
