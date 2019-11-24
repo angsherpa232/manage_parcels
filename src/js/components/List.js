@@ -9,8 +9,6 @@ const List = props => {
   const isBiker = () => (screen === "user" ? false : true);
   const isManager = () => (screen === "admin" ? false : true);
 
-  console.log("user from list ", isBiker(), screen);
-
   return (
     <ul>
       {bikers.map(el => {

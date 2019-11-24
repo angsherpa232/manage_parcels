@@ -31,8 +31,6 @@ app.get("/authenticate", auth, (req, res) => {
     signed: true
   };
 
-  console.log(req.auth.user);
-
   if (req.auth.user === "john") {
     res.cookie("name", "john", options).send({ screen: "admin" });
   } else if (req.auth.user === "user") {
@@ -41,7 +39,6 @@ app.get("/authenticate", auth, (req, res) => {
 });
 
 app.get("/read-cookie", (req, res) => {
-  console.log(req.signedCookies);
   if (req.signedCookies.name === "john") {
     res.send({ screen: "admin" });
   } else if (req.signedCookies.name === "user") {
