@@ -4,14 +4,18 @@ import axios from "axios";
 
 import Manager from "./Manager";
 import Bikers from "./Bikers";
-import { setRole } from "../actions/index";
+import { setRole, setError } from "../actions/index";
 import Login from "../components/Login";
-
+import ErrorModal from "../components/UI/ErrorModal";
+import { managerList, bikerList } from "./UI/listOfMembers";
+console.log("mglist, bklist ", managerList, bikerList);
 function View(props) {
   const { screen, setScreen } = props;
-
-  const screenRedux = useSelector(state => state.screenRedux);
-  console.log("the screen is ttt", screen, screenRedux);
+  const dispatch = useDispatch();
+  const { username, screenRedux } = useSelector(state => ({
+    username: state.username,
+    screenRedux: state.screenRedux
+  }));
 
   const [data, setData] = useState();
 
@@ -36,10 +40,28 @@ function View(props) {
 
   const viewBasedOnRole = screen => {
     let view;
-    if (screen === "admin") {
+    console.log("screenRedux is ", screenRedux);
+    if (
+      screenRedux === "admin" &&
+      managerList.includes(username) &&
+      screen === "admin"
+    ) {
+      console.log("if ");
       view = <Manager />;
-    } else if (screen === "user") {
+    } else if (
+      screenRedux === "user" &&
+      bikerList.includes(username) &&
+      screen === "user"
+    ) {
+      console.log("else if ");
       view = <Bikers />;
+    } else {
+      console.log("else ");
+      view = (
+        <ErrorModal onClose={() => dispatch(setError(null))}>
+          {"Please check your role and try again."}
+        </ErrorModal>
+      );
     }
     return view;
   };
@@ -57,9 +79,13 @@ function View(props) {
 
 function Auth() {
   const [screen, setScreen] = useState("auth");
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
 
+  const { username, password, error } = useSelector(state => ({
+    username: state.username,
+    password: state.password,
+    error: state.error
+  }));
+  console.log("error is ", error);
   const dispatch = useDispatch();
 
   const auth = async () => {
@@ -69,12 +95,11 @@ function Auth() {
       });
 
       if (res.data.screen !== undefined) {
-        console.log("from if ", res.data.screen);
-        dispatch(setRole(res.data.screen));
+        //dispatch(setRole(res.data.screen));
         setScreen(res.data.screen);
       }
     } catch (error) {
-      console.log(error);
+      dispatch(setError(error.message));
     }
   };
 
@@ -88,8 +113,8 @@ function Auth() {
       }
     } catch (error) {
       setScreen("auth");
+      dispatch(setError(error.message));
       dispatch(setRole("auth"));
-      console.log(error);
     }
   };
 
@@ -99,14 +124,17 @@ function Auth() {
 
   return (
     <>
-      {screen === "auth" ? (
-        <Login
-          setUsername={setUsername}
-          setPassword={setPassword}
-          auth={auth}
-        />
+      {screen === "auth" && !error ? (
+        <Login auth={auth} />
       ) : (
-        <View screen={screen} setScreen={setScreen} />
+        <>
+          {error && (
+            <ErrorModal onClose={() => dispatch(setError(null))}>
+              {error}
+            </ErrorModal>
+          )}
+          <View screen={screen} setScreen={setScreen} />
+        </>
       )}
     </>
   );

@@ -7,8 +7,8 @@ const app = express();
 
 const auth = basicAuth({
   users: {
-    admin: "123",
-    user: "456"
+    john: "123",
+    sherpa: "456"
   }
 });
 
@@ -33,8 +33,8 @@ app.get("/authenticate", auth, (req, res) => {
 
   console.log(req.auth.user);
 
-  if (req.auth.user === "admin") {
-    res.cookie("name", "admin", options).send({ screen: "admin" });
+  if (req.auth.user === "john") {
+    res.cookie("name", "john", options).send({ screen: "admin" });
   } else if (req.auth.user === "user") {
     res.cookie("name", "user", options).send({ screen: "user" });
   }
@@ -42,7 +42,7 @@ app.get("/authenticate", auth, (req, res) => {
 
 app.get("/read-cookie", (req, res) => {
   console.log(req.signedCookies);
-  if (req.signedCookies.name === "admin") {
+  if (req.signedCookies.name === "john") {
     res.send({ screen: "admin" });
   } else if (req.signedCookies.name === "user") {
     res.send({ screen: "user" });
@@ -56,7 +56,7 @@ app.get("/clear-cookie", (req, res) => {
 });
 
 app.get("/get-data", (req, res) => {
-  if (req.signedCookies.name === "admin") {
+  if (req.signedCookies.name === "john") {
     res.send("this is admin panel");
   } else if (req.signedCookies.name === "user") {
     res.send("This is user data");

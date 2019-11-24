@@ -1,5 +1,6 @@
 import { ADD_ARTICLE, SET_ASSIGNEE } from "../constants/action-types";
 
+// check if the bikers=[] is required anymore or not? :D
 const initialState = {
   articles: [],
   remoteArticles: [],
@@ -8,7 +9,10 @@ const initialState = {
   isAuth: false,
   pickupTime: "",
   deliveryDate: "",
-  screenRedux: "auth"
+  screenRedux: "auth",
+  error: null,
+  username: "",
+  password: ""
 };
 
 function rootReducer(state = initialState, action) {
@@ -104,11 +108,29 @@ function rootReducer(state = initialState, action) {
 
   // Authentication
   if (action.type === "SET_ROLE") {
+    console.log("role is ", action.payload);
     return Object.assign({}, state, {
       screenRedux: action.payload
     });
   }
 
+  if (action.type === "ERROR") {
+    return Object.assign({}, state, {
+      error: action.payload
+    });
+  }
+
+  if (action.type === "USERNAME") {
+    return Object.assign({}, state, {
+      username: action.payload
+    });
+  }
+
+  if (action.type === "PASSWORD") {
+    return Object.assign({}, state, {
+      password: action.payload
+    });
+  }
   return state;
 }
 

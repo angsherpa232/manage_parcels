@@ -56,3 +56,15 @@ export function updateDeliveryTime(payload) {
 export function setRole(payload) {
   return { type: "SET_ROLE", payload };
 }
+
+export function setError(payload) {
+  return { type: "ERROR", payload };
+}
+
+export function setUsername(payload) {
+  return { type: "USERNAME", payload };
+}
+
+export function setPassword(payload) {
+  return { type: "PASSWORD", payload };
+}
