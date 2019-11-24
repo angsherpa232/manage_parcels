@@ -30,7 +30,7 @@ function rootReducer(state = initialState, action) {
 
   if (action.type === "DATA_LOADED") {
     return Object.assign({}, state, {
-      remoteArticles: state.remoteArticles.concat(action.payload)
+      articles: state.remoteArticles.concat(action.payload)
     });
   }
 
