@@ -58,6 +58,13 @@ export function setRole(payload) {
 }
 
 export function setError(payload) {
-  console.log("action error ", payload);
   return { type: "ERROR", payload };
+}
+
+export function setUsername(payload) {
+  return { type: "USERNAME", payload };
+}
+
+export function setPassword(payload) {
+  return { type: "PASSWORD", payload };
 }
