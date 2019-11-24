@@ -9,55 +9,44 @@ import Login from "../components/Login";
 import ErrorModal from "../components/UI/ErrorModal";
 
 function View(props) {
-  const { screen, setScreen } = props;
+  const { screen, setScreen, username, password } = props;
   const dispatch = useDispatch();
-  const { screenRedux } = useSelector(state => ({
-    screenRedux: state.screenRedux
+  const { screenRedux, error } = useSelector(state => ({
+    screenRedux: state.screenRedux,
+    error: state.error
   }));
-
-  const [data, setData] = useState();
 
   const deleteCookie = async () => {
     try {
       await axios.get("/clear-cookie");
+      dispatch(setRole("auth"));
       setScreen("auth");
     } catch (error) {
       console.log(error);
     }
   };
 
-  const getData = async () => {
-    try {
-      const res = await axios.get("/get-data");
-
-      setData(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const viewBasedOnRole = screen => {
+  const viewBasedOnRole = (screen, username, password) => {
     let view;
     if (screenRedux === "manager" && screen === "manager") {
       view = <Manager />;
     } else if (screenRedux === "biker" && screen === "biker") {
       view = <Bikers />;
-    } else {
+    } else if (!error && username && password && screenRedux === "auth") {
       view = (
-        <ErrorModal onClose={() => dispatch(setError(null))}>
+        <ErrorModal onClose={deleteCookie}>
           {"Please check your role and try again."}
         </ErrorModal>
       );
     }
+
     return view;
   };
 
   return (
     <div>
       <p>{screen}</p>
-      {viewBasedOnRole(screen)}
-      <p>{data}</p>
-      <button onClick={getData}>Get Data</button>
+      {viewBasedOnRole(screen, username, password)}
       <button onClick={deleteCookie}>Logout</button>
     </div>
   );
@@ -118,7 +107,12 @@ function Auth() {
               {error}
             </ErrorModal>
           )}
-          <View screen={screen} setScreen={setScreen} />
+          <View
+            screen={screen}
+            setScreen={setScreen}
+            username={username}
+            password={password}
+          />
         </>
       )}
     </>
