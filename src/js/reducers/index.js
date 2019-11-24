@@ -119,13 +119,13 @@ function rootReducer(state = initialState, action) {
     });
   }
 
-  if (action.type === "USERNAME") {
+  if (action.type === "SETUSERNAME") {
     return Object.assign({}, state, {
       username: action.payload
     });
   }
 
-  if (action.type === "PASSWORD") {
+  if (action.type === "SETPASSWORD") {
     return Object.assign({}, state, {
       password: action.payload
     });

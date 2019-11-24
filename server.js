@@ -7,10 +7,16 @@ const app = express();
 
 const auth = basicAuth({
   users: {
-    john: "123",
-    sherpa: "456"
+    john: "1",
+    user: "4",
+    sherpa: "4",
+    ram: "4",
+    sam: "4",
+    kushal: "4"
   }
 });
+
+const bikerList = ["user", "ang gurung", "sherpa", "ram", "sam", "kushal"];
 
 const PORT = process.env.PORT || 5000;
 
@@ -33,7 +39,7 @@ app.get("/authenticate", auth, (req, res) => {
 
   if (req.auth.user === "john") {
     res.cookie("name", "john", options).send({ screen: "admin" });
-  } else if (req.auth.user === "user") {
+  } else if (bikerList.includes(req.auth.user)) {
     res.cookie("name", "user", options).send({ screen: "user" });
   }
 });
@@ -41,7 +47,7 @@ app.get("/authenticate", auth, (req, res) => {
 app.get("/read-cookie", (req, res) => {
   if (req.signedCookies.name === "john") {
     res.send({ screen: "admin" });
-  } else if (req.signedCookies.name === "user") {
+  } else if (bikerList.includes(req.signedCookies.name)) {
     res.send({ screen: "user" });
   } else {
     res.send({ screen: "auth" });
