@@ -16,7 +16,128 @@ const auth = basicAuth({
   }
 });
 
+// List of bikers. There's only one manager i.e. john
 const bikerList = ["user", "ang gurung", "sherpa", "ram", "sam", "kushal"];
+// List of parcels
+const parcels = [
+  {
+    id: 1,
+    assignee: "ang gurung",
+    origin: "kathmandu",
+    destination: "berlin",
+    status: "waiting",
+    pickupTime: "",
+    deliveryTime: ""
+  },
+  {
+    id: 2,
+    assignee: "ang gurung",
+    origin: "pokhara",
+    destination: "munster",
+    status: "waiting",
+    pickupTime: "",
+    deliveryTime: ""
+  },
+  {
+    id: 3,
+    assignee: "sherpa",
+    origin: "bhaktapur",
+    destination: "freiburg",
+    status: "assigned",
+    pickupTime: "",
+    deliveryTime: ""
+  },
+  {
+    id: 4,
+    assignee: "ram",
+    origin: "khumbu",
+    destination: "frankfurt",
+    status: "assinged",
+    pickupTime: "",
+    deliveryTime: ""
+  },
+  {
+    id: 5,
+    assignee: "sam",
+    origin: "janakpur",
+    destination: "munich",
+    status: "pickedUp",
+    pickupTime: "",
+    deliveryTime: ""
+  },
+  {
+    id: 11,
+    assignee: "none",
+    origin: "chitwan",
+    destination: "america",
+    status: "unassigned",
+    pickupTime: "",
+    deliveryTime: ""
+  },
+  {
+    id: 6,
+    assignee: "john",
+    origin: "phakding",
+    destination: "hamburg",
+    status: "pickedUp",
+    pickupTime: "",
+    deliveryTime: ""
+  },
+  {
+    id: 7,
+    assignee: "john",
+    origin: "namche",
+    destination: "zurich",
+    status: "delivered",
+    pickupTime: "",
+    deliveryTime: ""
+  },
+  {
+    id: 8,
+    assignee: "ronay",
+    origin: "butwal",
+    destination: "spain",
+    status: "delivered",
+    pickupTime: "",
+    deliveryTime: ""
+  },
+  {
+    id: 9,
+    assignee: "none",
+    origin: "chitwan",
+    destination: "america",
+    status: "unassigned",
+    pickupTime: "",
+    deliveryTime: ""
+  },
+  {
+    id: 10,
+    assignee: "kushal",
+    origin: "lukla",
+    destination: "france",
+    status: "unassigned",
+    pickupTime: "",
+    deliveryTime: ""
+  },
+  {
+    id: 12,
+    assignee: "sanjeev",
+    origin: "chitwan",
+    destination: "america",
+    status: "delivered",
+    pickupTime: "",
+    deliveryTime: ""
+  },
+  {
+    id: 13,
+    assignee: "sanjeev",
+    origin: "chitwan",
+    destination: "america",
+    status: "pickedUp",
+    pickupTime: "",
+    deliveryTime: ""
+  }
+];
 
 const PORT = process.env.PORT || 5000;
 
@@ -59,11 +180,5 @@ app.get("/clear-cookie", (req, res) => {
 });
 
 app.get("/get-data", (req, res) => {
-  if (req.signedCookies.name === "john") {
-    res.send("this is admin panel");
-  } else if (req.signedCookies.name === "user") {
-    res.send("This is user data");
-  } else {
-    res.end();
-  }
+  res.json(parcels);
 });

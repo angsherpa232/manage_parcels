@@ -11,11 +11,12 @@ export function setArticles(payload) {
 // thunks allows to return function instead of plain JS object from action creator
 export function getData() {
   return function(dispatch) {
-    return fetch("https://jsonplaceholder.typicode.com/posts")
+    return fetch("/get-data")
       .then(response => response.json())
       .then(json => {
         dispatch({ type: "DATA_LOADED", payload: json });
-      });
+      })
+      .catch(error => console.log("err ", error));
   };
 }
 
