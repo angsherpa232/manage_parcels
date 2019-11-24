@@ -35,7 +35,7 @@ function View(props) {
     } else if (!error && username && password && screenRedux === "auth") {
       view = (
         <ErrorModal onClose={deleteCookie}>
-          {"Please check your role and try again."}
+          {"Please select valid role or check for typos and try again."}
         </ErrorModal>
       );
     }
@@ -104,7 +104,8 @@ function Auth() {
         <>
           {error && (
             <ErrorModal onClose={() => dispatch(setError(null))}>
-              {error}
+              {`${error}
+              hint: Check for typos or make sure you are a authorized user.`}
             </ErrorModal>
           )}
           <View
