@@ -33,13 +33,17 @@ const Manager = props => {
         className={styles.btn}
         onChange={(e => handleChange.bind(this, id))()}
       >
-        {parcels
-          .filter(biker => biker.assignee !== "none")
-          .map(biker => (
-            <option key={biker.id} value={biker.assignee}>
-              {biker.assignee}
-            </option>
-          ))}
+        {[
+          ...new Set(
+            parcels
+              .filter((e, index) => e.assignee !== "none")
+              .map(e => e.assignee)
+          )
+        ].map(biker => (
+          <option key={biker.id} value={biker}>
+            {biker}
+          </option>
+        ))}
       </select>
     );
   };
