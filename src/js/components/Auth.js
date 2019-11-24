@@ -7,12 +7,11 @@ import Bikers from "./Bikers";
 import { setRole, setError } from "../actions/index";
 import Login from "../components/Login";
 import ErrorModal from "../components/UI/ErrorModal";
-import { managerList, bikerList } from "./UI/listOfMembers";
-console.log("mglist, bklist ", managerList, bikerList);
+
 function View(props) {
   const { screen, setScreen } = props;
   const dispatch = useDispatch();
-  const { username, screenRedux } = useSelector(state => ({
+  const { screenRedux } = useSelector(state => ({
     username: state.username,
     screenRedux: state.screenRedux
   }));
@@ -31,7 +30,7 @@ function View(props) {
   const getData = async () => {
     try {
       const res = await axios.get("/get-data");
-      console.log(res.data);
+
       setData(res.data);
     } catch (error) {
       console.log(error);
@@ -40,23 +39,12 @@ function View(props) {
 
   const viewBasedOnRole = screen => {
     let view;
-    console.log("screenRedux is ", screenRedux);
-    if (
-      screenRedux === "admin" &&
-      managerList.includes(username) &&
-      screen === "admin"
-    ) {
-      console.log("if ");
+    if (screenRedux === "admin" && screen === "admin") {
       view = <Manager />;
-    } else if (
-      screenRedux === "user" &&
-      bikerList.includes(username) &&
-      screen === "user"
-    ) {
+    } else if (screenRedux === "user" && screen === "user") {
       console.log("else if ");
       view = <Bikers />;
     } else {
-      console.log("else ");
       view = (
         <ErrorModal onClose={() => dispatch(setError(null))}>
           {"Please check your role and try again."}
@@ -85,7 +73,6 @@ function Auth() {
     password: state.password,
     error: state.error
   }));
-  console.log("error is ", error);
   const dispatch = useDispatch();
 
   const auth = async () => {

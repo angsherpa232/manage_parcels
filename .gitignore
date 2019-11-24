@@ -9,7 +9,7 @@
 /coverage
 
 # production
-/client/build
+/client
 /client/build/index.html
 
 # misc
