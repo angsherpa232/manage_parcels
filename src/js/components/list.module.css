@@ -37,10 +37,8 @@
   }
 
   .listContent {
-    justify-content: space-evenly;
-    flex-direction: column;
-    padding: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
+    display: block;
   }
 
   .innerSection {
@@ -50,6 +48,10 @@
 
   .innerSection p {
     padding-top: 5px;
-    padding-right: 10px;
+  }
+
+  .parcelList {
+    min-width: 362px;
+    text-align: center;
   }
 }

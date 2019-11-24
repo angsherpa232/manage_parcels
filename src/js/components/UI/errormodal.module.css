@@ -36,3 +36,10 @@
   background: rgba(0, 0, 0, 0.75);
   z-index: 50;
 }
+
+@media (max-width: 450px) {
+  .error_modal {
+    left: 25px;
+    width: 17rem;
+  }
+}
