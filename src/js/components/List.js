@@ -6,8 +6,8 @@ const List = props => {
   const { bikers, getAssignee, getPickupTime, getDeliveryTime, screen } = props;
 
   // temporary method to check if it is user or manger, later replace with auth function
-  const isBiker = () => (screen === "user" ? false : true);
-  const isManager = () => (screen === "admin" ? false : true);
+  const isBiker = () => (screen === "biker" ? false : true);
+  const isManager = () => (screen === "manager" ? false : true);
 
   return (
     <ul>

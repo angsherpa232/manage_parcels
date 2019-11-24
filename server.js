@@ -38,17 +38,17 @@ app.get("/authenticate", auth, (req, res) => {
   };
 
   if (req.auth.user === "john") {
-    res.cookie("name", "john", options).send({ screen: "admin" });
+    res.cookie("name", "john", options).send({ screen: "manager" });
   } else if (bikerList.includes(req.auth.user)) {
-    res.cookie("name", "user", options).send({ screen: "user" });
+    res.cookie("name", req.auth.user, options).send({ screen: "biker" });
   }
 });
 
 app.get("/read-cookie", (req, res) => {
   if (req.signedCookies.name === "john") {
-    res.send({ screen: "admin" });
+    res.send({ screen: "manager" });
   } else if (bikerList.includes(req.signedCookies.name)) {
-    res.send({ screen: "user" });
+    res.send({ screen: "biker" });
   } else {
     res.send({ screen: "auth" });
   }

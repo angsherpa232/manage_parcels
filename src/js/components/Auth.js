@@ -38,9 +38,9 @@ function View(props) {
 
   const viewBasedOnRole = screen => {
     let view;
-    if (screenRedux === "admin" && screen === "admin") {
+    if (screenRedux === "manager" && screen === "manager") {
       view = <Manager />;
-    } else if (screenRedux === "user" && screen === "user") {
+    } else if (screenRedux === "biker" && screen === "biker") {
       view = <Bikers />;
     } else {
       view = (
