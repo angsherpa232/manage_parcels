@@ -62,9 +62,9 @@ export function setError(payload) {
 }
 
 export function setUsername(payload) {
-  return { type: "USERNAME", payload };
+  return { type: "SETUSERNAME", payload };
 }
 
 export function setPassword(payload) {
-  return { type: "PASSWORD", payload };
+  return { type: "SETPASSWORD", payload };
 }

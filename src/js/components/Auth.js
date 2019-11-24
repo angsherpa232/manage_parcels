@@ -12,7 +12,6 @@ function View(props) {
   const { screen, setScreen } = props;
   const dispatch = useDispatch();
   const { screenRedux } = useSelector(state => ({
-    username: state.username,
     screenRedux: state.screenRedux
   }));
 
@@ -42,7 +41,6 @@ function View(props) {
     if (screenRedux === "admin" && screen === "admin") {
       view = <Manager />;
     } else if (screenRedux === "user" && screen === "user") {
-      console.log("else if ");
       view = <Bikers />;
     } else {
       view = (
