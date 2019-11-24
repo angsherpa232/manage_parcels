@@ -6,8 +6,8 @@ import List from "../components/List";
 import styles from "./list.module.css";
 
 const Manager = props => {
-  let { bikers, screenRedux } = useSelector(state => ({
-    bikers: state.articles,
+  let { parcels, screenRedux } = useSelector(state => ({
+    parcels: state.parcels,
     screenRedux: state.screenRedux
   }));
 
@@ -22,9 +22,9 @@ const Manager = props => {
   };
 
   // Update the array to be displayed as list i.e. when the biker update the timestamp
-  bikers = localStorage["user"]
-    ? JSON.parse(localStorage.getItem("user"))
-    : bikers;
+  parcels = localStorage["parcels"]
+    ? JSON.parse(localStorage.getItem("parcels"))
+    : parcels;
 
   // Get the chosen assignee from bikers list
   const getAssignee = id => {
@@ -33,7 +33,7 @@ const Manager = props => {
         className={styles.btn}
         onChange={(e => handleChange.bind(this, id))()}
       >
-        {bikers
+        {parcels
           .filter(biker => biker.assignee !== "none")
           .map(biker => (
             <option key={biker.id} value={biker.assignee}>
@@ -45,7 +45,7 @@ const Manager = props => {
   };
 
   return (
-    <List bikers={bikers} getAssignee={getAssignee} screen={screenRedux} />
+    <List bikers={parcels} getAssignee={getAssignee} screen={screenRedux} />
   );
 };
 

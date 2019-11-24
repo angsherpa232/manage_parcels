@@ -19,7 +19,7 @@ const auth = basicAuth({
 // List of bikers. There's only one manager i.e. john
 const bikerList = ["user", "ang gurung", "sherpa", "ram", "sam", "kushal"];
 // List of parcels
-const parcels = [
+const parcelArray = [
   {
     id: 1,
     assignee: "ang gurung",
@@ -180,5 +180,5 @@ app.get("/clear-cookie", (req, res) => {
 });
 
 app.get("/get-data", (req, res) => {
-  res.json(parcels);
+  res.json(parcelArray);
 });

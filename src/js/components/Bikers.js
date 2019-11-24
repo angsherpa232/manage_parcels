@@ -10,17 +10,17 @@ import {
 
 const Bikers = props => {
   const dispatch = useDispatch();
-  // Either takes the initial articles state or assignee updated by manager
+  // Either takes the initial parcels state or assignee updated by manager
 
-  let { bikers, pickupTime, screenRedux } = useSelector(state => ({
-    bikers: state.articles,
+  let { parcels, pickupTime, screenRedux } = useSelector(state => ({
+    parcels: state.parcels,
     pickupTime: state.pickupTime,
     screenRedux: state.screenRedux
   }));
 
-  bikers = localStorage["user"]
-    ? JSON.parse(localStorage.getItem("user"))
-    : bikers;
+  parcels = localStorage["parcels"]
+    ? JSON.parse(localStorage.getItem("parcels"))
+    : parcels;
 
   const getPickupTime = (id, e) => {
     const dateTime = e.target.value;
@@ -34,7 +34,7 @@ const Bikers = props => {
     dispatch(updateDeliveryTime(id));
   };
 
-  const specificBiker = bikers.filter(biker => {
+  const specificBiker = parcels.filter(biker => {
     const { assignee } = biker;
     return assignee === "kushal";
   });
