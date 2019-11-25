@@ -27,105 +27,86 @@ const initialState = {
   password: null
 };
 
+// Helper function to get the specific package
+const findSpecificParcel = (state, action) => {
+  const chosenPackage = state.parcels.find(e => e.id === action.payload);
+  return chosenPackage;
+};
+
+// Helper function to update the specific package
+const udpatePackage = (state, action, toBeUpdatedPackage) => {
+  const index = state.parcels.findIndex(e => e.id === action.payload);
+  const bikeCopy = [...state.parcels];
+  bikeCopy[index] = toBeUpdatedPackage;
+  localStorage.setItem("parcels", JSON.stringify(bikeCopy));
+  return Object.assign({}, state, {
+    parcels: bikeCopy
+  });
+};
+
 function rootReducer(state = initialState, action) {
-  if (action.type === SET_PARCELS) {
-    return Object.assign({}, state, {
-      parcels: state.parcels.concat(action.payload)
-    });
-  }
+  switch (action.type) {
+    case SET_PARCELS: {
+      return { ...state, parcels: state.parcels.concat(action.payload) };
+    }
+    case DATA_LOADED: {
+      return { ...state, parcels: state.parcels.concat(action.payload) };
+    }
+    case SET_ASSIGNEE: {
+      return { ...state, assignee: action.payload };
+    }
 
-  if (action.type === DATA_LOADED) {
-    return Object.assign({}, state, {
-      parcels: state.parcels.concat(action.payload)
-    });
-  }
+    case GET_PARCEL_DETAIL: {
+      const unAssignedPackage = findSpecificParcel(state, action);
+      unAssignedPackage.status = "assigned";
+      unAssignedPackage.assignee = state.assignee;
+      return udpatePackage(state, action, unAssignedPackage);
+    }
 
-  if (action.type === SET_ASSIGNEE) {
-    return Object.assign({}, state, {
-      assignee: action.payload
-    });
-  }
+    case UPDATE_PICKUP_TIME: {
+      const selectedPackage = findSpecificParcel(state, action);
+      selectedPackage.pickupTime = state.pickupTime;
+      return udpatePackage(state, action, selectedPackage);
+    }
 
-  if (action.type === GET_PARCEL_DETAIL) {
-    const unAssignedPackage = state.parcels.find(e => e.id === action.payload);
-    unAssignedPackage.status = "assigned";
-    unAssignedPackage.assignee = state.assignee;
-    const index = state.parcels.findIndex(e => e.id === action.payload);
-    const bikeCopy = [...state.parcels];
-    bikeCopy[index] = unAssignedPackage;
-    localStorage.setItem("parcels", JSON.stringify(bikeCopy));
-    return Object.assign({}, state, {
-      parcels: bikeCopy
-    });
-  }
+    case LOGIN: {
+      return { ...state, isAuth: true };
+    }
 
-  if (action.type === UPDATE_PICKUP_TIME) {
-    const unAssignedPackage = state.parcels.find(e => e.id === action.payload);
-    unAssignedPackage.pickupTime = state.pickupTime;
-    const index = state.parcels.findIndex(e => e.id === action.payload);
-    const bikeCopy = [...state.parcels];
-    bikeCopy[index] = unAssignedPackage;
-    localStorage.setItem("parcels", JSON.stringify(bikeCopy));
-    return Object.assign({}, state, {
-      parcels: bikeCopy
-    });
-  }
+    case SET_PICKUP_TIME: {
+      return { ...state, pickupTime: action.payload };
+    }
 
-  if (action.type === LOGIN) {
-    return Object.assign({}, state, {
-      isAuth: true
-    });
-  }
+    case SET_DELIVERY_TIME: {
+      return { ...state, deliveryTime: action.payload };
+    }
 
-  if (action.type === SET_PICKUP_TIME) {
-    return Object.assign({}, state, {
-      pickupTime: action.payload
-    });
-  }
+    case UPDATE_DELIVERY_TIME: {
+      const selectedPackage = findSpecificParcel(state, action);
+      selectedPackage.deliveryTime = state.deliveryTime;
+      return udpatePackage(state, action, selectedPackage);
+    }
 
-  if (action.type === SET_DELIVERY_TIME) {
-    return Object.assign({}, state, {
-      deliveryTime: action.payload
-    });
-  }
+    // Authentication
+    case SET_ROLE: {
+      return { ...state, screenRedux: action.payload };
+    }
 
-  if (action.type === UPDATE_DELIVERY_TIME) {
-    const unAssignedPackage = state.parcels.find(e => e.id === action.payload);
-    unAssignedPackage.deliveryTime = state.deliveryTime;
-    const index = state.parcels.findIndex(e => e.id === action.payload);
-    const bikeCopy = [...state.parcels];
-    bikeCopy[index] = unAssignedPackage;
-    localStorage.setItem("parcels", JSON.stringify(bikeCopy));
-    return Object.assign({}, state, {
-      parcels: bikeCopy
-    });
-  }
+    case ERROR: {
+      return { ...state, error: action.payload };
+    }
 
-  // Authentication
-  if (action.type === SET_ROLE) {
-    return Object.assign({}, state, {
-      screenRedux: action.payload
-    });
-  }
+    case SETUSERNAME: {
+      return { ...state, username: action.payload };
+    }
 
-  if (action.type === ERROR) {
-    return Object.assign({}, state, {
-      error: action.payload
-    });
-  }
+    case SETPASSWORD: {
+      return { ...state, password: action.payload };
+    }
 
-  if (action.type === SETUSERNAME) {
-    return Object.assign({}, state, {
-      username: action.payload
-    });
+    default:
+      return state;
   }
-
-  if (action.type === SETPASSWORD) {
-    return Object.assign({}, state, {
-      password: action.payload
-    });
-  }
-  return state;
 }
 
 export default rootReducer;
