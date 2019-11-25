@@ -36,7 +36,7 @@ Optional: It is recommended to install nodemon so you avoid having to restart th
 npm install nodemon -g
 ```
 
-## Build
+## Build (important step)
 
 To build the application, from the root directory, run:
 
