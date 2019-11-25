@@ -66,7 +66,7 @@ Open your web browser and view the app at `localhost:5000`
 
 As a role of manager, currently only one manager is available
 username: john
-password: 123
+password: john123
 
 As a role of biker, currently following bikers are available
 username: [mike,james,steven,anton,sam,daniel,gil,ang,thomas,david];
