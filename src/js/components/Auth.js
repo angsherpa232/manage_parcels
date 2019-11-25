@@ -4,7 +4,7 @@ import axios from "axios";
 
 import Manager from "./Manager";
 import Bikers from "./Bikers";
-import { setRole, setError } from "../actions/index";
+import { setRole, setError, setUsername } from "../actions/index";
 //import deleteCookie from "../utility/index";
 import Login from "../components/Login";
 import ErrorModal from "../components/UI/ErrorModal";
@@ -77,8 +77,9 @@ function Auth() {
     try {
       const res = await axios.get("/read-cookie");
 
-      if (res.data.screen !== undefined) {
+      if (res.data.screen !== undefined && res.data.name !== undefined) {
         dispatch(setRole(res.data.screen));
+        dispatch(setUsername(res.data.name));
         setScreen(res.data.screen);
       }
     } catch (error) {

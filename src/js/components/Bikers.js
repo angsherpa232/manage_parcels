@@ -12,10 +12,11 @@ const Bikers = props => {
   const dispatch = useDispatch();
   // Either takes the initial parcels state or assignee updated by manager
 
-  let { parcels, pickupTime, screenRedux } = useSelector(state => ({
+  let { parcels, pickupTime, screenRedux, username } = useSelector(state => ({
     parcels: state.parcels,
     pickupTime: state.pickupTime,
-    screenRedux: state.screenRedux
+    screenRedux: state.screenRedux,
+    username: state.username
   }));
 
   parcels = localStorage["parcels"]
@@ -36,7 +37,7 @@ const Bikers = props => {
 
   const specificBiker = parcels.filter(biker => {
     const { assignee } = biker;
-    return assignee === "kushal";
+    return assignee === username;
   });
 
   return (

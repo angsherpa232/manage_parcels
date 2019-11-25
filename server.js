@@ -167,9 +167,9 @@ app.get("/authenticate", auth, (req, res) => {
 
 app.get("/read-cookie", (req, res) => {
   if (req.signedCookies.name === "john") {
-    res.send({ screen: "manager" });
+    res.send({ screen: "manager", name: "john" });
   } else if (bikerList.includes(req.signedCookies.name)) {
-    res.send({ screen: "biker" });
+    res.send({ screen: "biker", name: req.signedCookies.name });
   } else {
     res.send({ screen: "auth" });
   }
