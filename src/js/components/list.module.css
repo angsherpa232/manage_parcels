@@ -30,6 +30,12 @@
   color: #39c0c7;
 }
 
+@media (min-width: 450px) {
+  .innerSection p {
+    text-align: right;
+  }
+}
+
 @media (max-width: 450px) {
   .card {
     margin: auto;
