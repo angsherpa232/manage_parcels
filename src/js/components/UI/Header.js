@@ -7,6 +7,7 @@ import styles from "./header.module.css";
 
 const Header = ({ setScreen }) => {
   const screenRedux = useSelector(state => state.screenRedux);
+  const username = useSelector(state => state.username);
   const dispatch = useDispatch();
 
   const logout = async () => {
@@ -28,7 +29,9 @@ const Header = ({ setScreen }) => {
         </p>
       </div>
       <div className={styles.logout_btn}>
-        <p>Welcome to {screenRedux} portal</p>
+        <p>
+          Welcome {username} to {screenRedux} portal
+        </p>
         <p onClick={logout}>
           <i class="fas fa-sign-out-alt"></i> Logout
         </p>
