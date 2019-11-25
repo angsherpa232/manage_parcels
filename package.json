@@ -15,8 +15,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "postbuild": "mv build client",
-    "build": "react-scripts build && rm -rf client/build && mv build client",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

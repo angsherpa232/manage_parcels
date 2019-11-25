@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import styles from "./list.module.css";
 
@@ -77,6 +78,14 @@ const List = props => {
       })}
     </ul>
   );
+};
+
+List.propTypes = {
+  bikers: PropTypes.array.isRequired,
+  getAssignee: PropTypes.func.isRequired,
+  getPickupTime: PropTypes.func.isRequired,
+  getDeliveryTime: PropTypes.func.isRequired,
+  screen: PropTypes.string.isRequired
 };
 
 export default List;

@@ -9,8 +9,8 @@
 /coverage
 
 # production
-/client
-/client/build/index.html
+/build
+/build/index.html
 
 # misc
 .DS_Store

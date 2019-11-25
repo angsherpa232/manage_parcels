@@ -9,12 +9,12 @@ import {
   UPDATE_DELIVERY_TIME,
   SET_ROLE,
   ERROR,
-  SETUSERNAME,
-  SETPASSWORD,
+  SET_USERNAME,
+  SET_PASSWORD,
   DATA_LOADED
 } from "../constants/action-types";
 
-// check if the bikers=[] is required anymore or not? :D
+// screenRedux keeps track of whether the user is admin or biker
 const initialState = {
   parcels: [],
   assignee: "none",
@@ -38,6 +38,7 @@ const udpatePackage = (state, action, toBeUpdatedPackage) => {
   const index = state.parcels.findIndex(e => e.id === action.payload);
   const bikeCopy = [...state.parcels];
   bikeCopy[index] = toBeUpdatedPackage;
+  // store the updated state in memory
   localStorage.setItem("parcels", JSON.stringify(bikeCopy));
   return Object.assign({}, state, {
     parcels: bikeCopy
@@ -96,11 +97,11 @@ function rootReducer(state = initialState, action) {
       return { ...state, error: action.payload };
     }
 
-    case SETUSERNAME: {
+    case SET_USERNAME: {
       return { ...state, username: action.payload };
     }
 
-    case SETPASSWORD: {
+    case SET_PASSWORD: {
       return { ...state, password: action.payload };
     }
 
