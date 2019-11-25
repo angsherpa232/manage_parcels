@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 
 import Card from "./UI/Card";
@@ -53,6 +54,10 @@ const Login = props => {
       </Card>
     </section>
   );
+};
+
+Login.propTypes = {
+  auth: PropTypes.func.isRequired
 };
 
 export default Login;

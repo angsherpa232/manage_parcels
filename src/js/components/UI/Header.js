@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 
@@ -38,6 +39,10 @@ const Header = ({ setScreen }) => {
       </div>
     </header>
   );
+};
+
+Header.propTypes = {
+  setScreen: PropTypes.func.isRequired
 };
 
 export default Header;

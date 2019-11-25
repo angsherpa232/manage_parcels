@@ -5,6 +5,7 @@ import { setAssignee, getParcelDetail } from "../actions/index";
 import List from "../components/List";
 import styles from "./list.module.css";
 
+// Controls the manager functionality such as assigning the package to bikers
 const Manager = props => {
   let { parcels, screenRedux } = useSelector(state => ({
     parcels: state.parcels,
@@ -27,6 +28,7 @@ const Manager = props => {
     : parcels;
 
   // Get the chosen assignee from bikers list
+  // Render the bikers name only once in  select dropdown for manager while assigning the package
   const getAssignee = id => {
     return (
       <select

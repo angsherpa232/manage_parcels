@@ -11,8 +11,10 @@ const App = () => {
 
   useEffect(() => {
     if (localStorage["parcels"]) {
+      // Sets the parcels value  from memory if available
       dispatch(setParcels(JSON.parse(localStorage.getItem("parcels"))));
     } else {
+      // If already not present in memory, fetch the parcels from server
       dispatch(getData());
     }
   }, []);

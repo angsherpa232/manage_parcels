@@ -1,68 +1,73 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project (Package Manager [PM]) was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# PACKAGE MANAGER (PM)
 
-In the project directory, you can run:
+It is a single page and mobile friendly web application that provides the dashboard for the manager and the bikers to manage the package. Manager can assign the package to any bikers. Whereas, bikers can set the delivery and pick-up time for the parcels.
 
-### `yarn start`
+## Getting Started
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+PM was developed using React, Redux and Node. The app has a stand-alone authentication system, so user accessibility can be controlled. The user can select the role as manager or bikers. The functionality of the dashboard depends on the role he/she is accounted. Once the user is logged in, upon reloading the page, he/she gets the same content on the screen, unless logged out.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Prerequisites
 
-### `yarn test`
+The following web technologies are necessary to run this application
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[node.js](https://nodejs.org/en/)<br/>
+[git](https://git-scm.com/downloads)
 
-### `yarn build`
+### Installing
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+From your console (e.g. cmd or GitBash) first clone the repository and enter the app root directory:
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+```
+git clone https://github.com/angsherpa232/manage_parcels.git
+cd manage_parcels
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Install the necessary node modules specified in [package.json] using:
 
-### `yarn eject`
+```
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Optional: It is recommended to install nodemon so you avoid having to restart the server every time you modify the project. This is very useful during development.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+npm install nodemon -g
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Build
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+To build the application, from the root directory, run:
 
-## Learn More
+```
+npm run build
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+This will create a build directory. Once the app is built, follow the running instructions
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Running
 
-### Code Splitting
+To run the application, from the root directory, run:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+```
+node server
+```
 
-### Analyzing the Bundle Size
+If you use nodemon, run:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+```
+nodemon server
+```
 
-### Making a Progressive Web App
+Open your web browser and view the app at `localhost:5000`
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+## Authentication
 
-### Advanced Configuration
+As a role of manager, currently only one manager is available
+username: john
+password: 123
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+As a role of biker, currently following bikers are available
+username: [mike,james,steven,anton,sam,daniel,gil,ang,thomas,david];
+password:[mike123,james123,steven123,anton123,sam123,daniel123,gil123,ang123,thomas123,david123]

@@ -5,11 +5,11 @@ import axios from "axios";
 import Manager from "./Manager";
 import Bikers from "./Bikers";
 import { setRole, setError, setUsername } from "../actions/index";
-//import deleteCookie from "../utility/index";
 import Login from "../components/Login";
 import ErrorModal from "../components/UI/ErrorModal";
 import Header from "../components/UI/Header";
 
+// Determines which screen to render (Login or Manager or Bikers)
 function View(props) {
   const { screen, setScreen, username, password } = props;
   const dispatch = useDispatch();
@@ -18,6 +18,7 @@ function View(props) {
     error: state.error
   }));
 
+  // Delete the cookie
   const deleteCookie = async () => {
     try {
       await axios.get("/clear-cookie");
@@ -28,6 +29,7 @@ function View(props) {
     }
   };
 
+  // Determines which screen to present based on role
   const viewBasedOnRole = (screen, username, password) => {
     let view;
     if (screenRedux === "manager" && screen === "manager") {
@@ -48,6 +50,7 @@ function View(props) {
   return <div>{viewBasedOnRole(screen, username, password)}</div>;
 }
 
+// Communicates with server based on entered credentials
 function Auth() {
   const [screen, setScreen] = useState("auth");
 
@@ -73,6 +76,7 @@ function Auth() {
     }
   };
 
+  // Read the cookie and update the state to support reload feature
   const readCookie = async () => {
     try {
       const res = await axios.get("/read-cookie");
@@ -89,6 +93,7 @@ function Auth() {
     }
   };
 
+  // After each reload checks if the user is already logged in or not
   useEffect(() => {
     readCookie();
   }, []);

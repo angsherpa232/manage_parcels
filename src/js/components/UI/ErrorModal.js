@@ -4,7 +4,7 @@ import styles from "./errormodal.module.css";
 
 const ErrorModal = React.memo(props => {
   return (
-    <React.Fragment>
+    <>
       <div className={styles.backdrop} onClick={props.onClose} />
       <div className={styles.error_modal}>
         <h2>An Error Occurred!</h2>
@@ -15,7 +15,7 @@ const ErrorModal = React.memo(props => {
           </button>
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 });
 

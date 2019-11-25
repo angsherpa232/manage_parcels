@@ -9,8 +9,8 @@ import {
   UPDATE_DELIVERY_TIME,
   SET_ROLE,
   ERROR,
-  SETUSERNAME,
-  SETPASSWORD,
+  SET_USERNAME,
+  SET_PASSWORD,
   DATA_LOADED
 } from "../constants/action-types";
 
@@ -68,9 +68,9 @@ export function setError(payload) {
 }
 
 export function setUsername(payload) {
-  return { type: SETUSERNAME, payload };
+  return { type: SET_USERNAME, payload };
 }
 
 export function setPassword(payload) {
-  return { type: SETPASSWORD, payload };
+  return { type: SET_PASSWORD, payload };
 }
