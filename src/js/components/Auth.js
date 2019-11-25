@@ -5,8 +5,10 @@ import axios from "axios";
 import Manager from "./Manager";
 import Bikers from "./Bikers";
 import { setRole, setError } from "../actions/index";
+//import deleteCookie from "../utility/index";
 import Login from "../components/Login";
 import ErrorModal from "../components/UI/ErrorModal";
+import Header from "../components/UI/Header";
 
 function View(props) {
   const { screen, setScreen, username, password } = props;
@@ -43,13 +45,7 @@ function View(props) {
     return view;
   };
 
-  return (
-    <div>
-      <p>{screen}</p>
-      {viewBasedOnRole(screen, username, password)}
-      <button onClick={deleteCookie}>Logout</button>
-    </div>
-  );
+  return <div>{viewBasedOnRole(screen, username, password)}</div>;
 }
 
 function Auth() {
@@ -108,6 +104,7 @@ function Auth() {
               hint: Check for typos or make sure you are a authorized user.`}
             </ErrorModal>
           )}
+          <Header setScreen={setScreen} />
           <View
             screen={screen}
             setScreen={setScreen}

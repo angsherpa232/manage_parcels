@@ -1,0 +1,22 @@
+.header {
+  background: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  height: 90px;
+  margin-bottom: 10px;
+}
+
+.header_title {
+  display: inline-block;
+  padding-right: 10px;
+}
+
+.header_title span {
+  font-size: -webkit-xxx-large;
+}
+
+.logout_btn {
+  display: flex;
+  justify-content: space-between;
+}
